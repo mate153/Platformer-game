@@ -1,12 +1,12 @@
-import './style/Profile.css'
+import './style/Profile.css';
 
 function Profile() {
 
-    return (    
-      <div>
-        <p>Profile</p>
-      </div>    
-    )
-  }
+  return (    
+    <div>
+      <p>Profile</p>
+    </div>    
+  )
+}
   
-  export default Profile;
+export default Profile;
