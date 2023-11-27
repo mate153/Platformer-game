@@ -1,11 +1,11 @@
-import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import './App.css';
+import { Route, Routes } from 'react-router-dom';
 
-import Navbar from './components/Navbar'
-import Main from './components/Main'
-import Profile from './components/Profile'
-import Game from './components/Game'
-import Settings from './components/Settings'
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Profile from './components/Profile';
+import Game from './components/Game';
+import Settings from './components/Settings';
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
       <div className='components-container'>
         <Routes>
           <Route path='/' element={
-              <Main
+              <Home
 
               />
             } 
@@ -55,4 +55,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
