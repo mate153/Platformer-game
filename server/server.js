@@ -5,13 +5,12 @@ app.use(express.json());
 
 //Cors//
 const cors = require('cors');
-app.use(cors({origin:'http://localhost:3000'}));
+app.use(cors({origin:'http://localhost:5173'}));
 
 
+app.get('/api/test', function(req, res){
 
-
-app.get('/test', function(req, res){
-   res.send("Hello world!");
+   res.json("Hello work!");
 });
 
-app.listen(4000);
+app.listen(3153);
