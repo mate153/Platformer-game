@@ -1,24 +1,23 @@
 import { useNavigate } from 'react-router-dom';
-import './style/Navbar.css'
+import './style/Navbar.css';
 
 function Navbar() {
     const navigate = useNavigate();
 
-
     const navigateToPage = (route) => {
         navigate(route);
-    }
+    };
 
     return (    
         <div className='navbar-container'>
-            <p>Navbar</p>
-            <div className='navbar-menu'>
-                <ul className='navbar-menu-buttons'>
-                    <li onClick={() => navigateToPage('/')}>Home</li>
-                    <li onClick={() => navigateToPage('/Game')}>Game</li>
-                    <li onClick={() => navigateToPage('/Profile')}>Profile</li>
-                    <li onClick={() => navigateToPage('/Settings')}>Settings</li>
-                </ul>
+            <div className='navbar-logo' onClick={() => navigateToPage('/')}>
+                <p>Navbar</p>
+            </div>            
+            <div className='navbar-menu'>                
+                <div onClick={() => navigateToPage('/')}>Home</div>
+                <div onClick={() => navigateToPage('/Game')}>Game</div>
+                <div onClick={() => navigateToPage('/Profile')}>Profile</div>
+                <div onClick={() => navigateToPage('/Settings')}>Settings</div>                
             </div>
         </div>    
     )
