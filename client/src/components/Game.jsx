@@ -4,13 +4,38 @@ import './style/Game.css';
 function Game() {
   
   useEffect(() => {
+    // CANVAS
     const canvas = document.querySelector('canvas');
     const c = canvas.getContext('2d');
-    const gravity = 0.5;
+
+    const scaledCanvas = {
+      width: canvas.width / 4,
+      height: canvas.height / 4
+    }
 
     canvas.width = 1024;
     canvas.height = 576;
 
+    // ENVIRONMENT PHYSICS
+    const gravity = 0.5;
+
+    // PLAYER MOVEMENT KEYS
+    const keys = {
+      d: {
+        pressed: false,
+      },
+      s: {
+        pressed: false,
+      },
+      a: {
+        pressed: false,
+      },
+      w: {
+        pressed: false,
+      }
+    };
+
+    // PLAYER OBJECT
     class Player {
       constructor(position){
         this.position = position;
@@ -39,6 +64,33 @@ function Game() {
       };
     };
 
+    // Sprite 
+    class Sprite {
+      constructor({position, imageSrc}){
+        this.position = position;
+        this.image = new Image();
+        this.image.src = imageSrc;
+    
+        this.image.onload = () => {
+          console.log(`Image loaded: ${imageSrc}`);
+        };
+    
+        this.image.onerror = (error) => {
+          console.error(`Error loading image ${imageSrc}:`, error);
+        };
+      }
+    
+      draw(){
+        if(!this.image) return 
+        c.drawImage(this.image, this.position.x, this.position.y);
+      }
+    
+      update(){
+        this.draw();
+      }
+    }
+
+    // PLAYERS SPRITE
     const player = new Player({
       x: 0,
       y: 0,
@@ -49,27 +101,28 @@ function Game() {
       y: 100,
     });
 
-    const keys = {
-      d: {
-        pressed: false,
+    // BACKGROUND SPRITE
+    const background = new Sprite ({
+      position: {
+        x:0,
+        y:0,
       },
-      s: {
-        pressed: false,
-      },
-      a: {
-        pressed: false,
-      },
-      w: {
-        pressed: false,
-      }
-    };
+      imageSrc: '/img/background.png',
+    });
 
+    // FRAMES ANIMATION
     function animate(){
       window.requestAnimationFrame(animate);
 
       c.fillStyle = 'white';
       c.fillRect(0, 0, canvas.width, canvas.height);
 
+      c.save();
+      //c.scale(4,4);
+      c.translate(0, -background.image.height + canvas.height);
+      background.update();
+      c.restore();
+      
       player.update();
       player2.update();
       
@@ -83,7 +136,7 @@ function Game() {
     };
     animate();
 
-
+    // PLAYER MOVEMENT 
     window.addEventListener('keydown', (event) => {
       switch(event.key){
         case 'd': 
