@@ -11,7 +11,7 @@ function Game() {
     const scaledCanvas = {
       width: canvas.width / 4,
       height: canvas.height / 4
-    }
+    };
 
     canvas.width = 1024;
     canvas.height = 576;
@@ -107,7 +107,7 @@ function Game() {
         x:0,
         y:0,
       },
-      imageSrc: '/img/background.png',
+      imageSrc: '/img/game_background_level1/background.png',
     });
 
     // FRAMES ANIMATION
@@ -149,6 +149,11 @@ function Game() {
 
         case 's':
           keys.s.pressed = true;
+          break;
+
+        case ' ':
+          keys.w.pressed = true;
+          player.velocity.y = -15;
           break;
 
         case 'w':
