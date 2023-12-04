@@ -25,3 +25,4 @@ dist-ssr
 
 # Media
 /public/img
+/public/welcome_background
