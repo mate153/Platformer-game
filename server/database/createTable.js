@@ -6,7 +6,7 @@ const create = (db) => {
             username TEXT,
             email TEXT,
             password TEXT,
-            date_of_birth TEXT,
+            level INTEGER,
             reg_date TEXT,
             role TEXT)`;
             db.query(sql_users, (err, result) => {
