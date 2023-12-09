@@ -8,11 +8,16 @@ const create = (db) => {
             password TEXT,
             date_of_birth TEXT,
             reg_date TEXT,
-            gender TEXT,
             role TEXT)`;
-        db.run(sql_users)
+            db.query(sql_users, (err, result) => {
+                if (err) {
+                    console.error('Table creation failed. Error:', err);
+                } else {
+                    console.log('The "users" table has been successfully created.');
+                }
+            });
     }
-    // createUsers();
+    //createUsers(); // Create users table
 }
 
 module.exports = {create};
