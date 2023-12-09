@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 
 //Dotenv//
-require('dotenv').config()
+require('dotenv').config();
 
 const dbHost = process.env.HOSTNAME;
 const dbAdmin = process.env.ADMIN_USER;
@@ -17,7 +17,7 @@ app.use(cors({origin:'http://localhost:5173'}));
 
 //Database//
 var sql = require("mssql");
-var dbRequest;
+const createTable = require('./database/createTable.js');
 
 var config = {
     user: dbAdmin,
@@ -30,10 +30,17 @@ var config = {
     }
 };
 
-sql.connect(config, function (err) {
-    if (err) console.log(err);
-    dbRequest = new sql.Request();
-});
+sql.connect(config, err => {
+    if (err) {
+        console.error('The connection to the database has failed. Error:', err);
+    } else {
+        console.log('Succesfully connected to the database.');
+        
+        const dbRequest = new sql.Request();
+
+        createTable.create(dbRequest); // Create users table
+    }    
+  });
 
 
 
