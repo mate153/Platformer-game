@@ -33,12 +33,9 @@ var config = {
 sql.connect(config, err => {
     if (err) {
         console.error('The connection to the database has failed. Error:', err);
-    } else {
-        console.log('Succesfully connected to the database.');
-        
+    } else {        
         const dbRequest = new sql.Request();
-
-        createTable.create(dbRequest); // Create users table
+        createTable.create(dbRequest); // Create users tabled
     }    
   });
 
