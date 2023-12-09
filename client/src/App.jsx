@@ -10,54 +10,28 @@ import Settings from './components/Settings';
 import Login from './components/Login';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({username: "", password :""});
   const [jwtToken, setJwtToken] = useState(null); 
 
   return (
-    loggedIn
+    userData.username !== "" && userData.password !== ""
     ?
     <div className='main-container'>
       <div className='navbar-component-container'>
-        <Navbar />
-      </div>
-      
+        <Navbar setUserData={setUserData}/>
+      </div>      
       <div className='components-container'>
         <Routes>
-          <Route path='/' element={
-              <Home
-
-              />
-            } 
-          />
-
-          <Route path='/Profile' element={
-              <Profile
-
-              />
-            } 
-          />
-
-          <Route path='/Game' element={
-              <Game
-
-              />
-            } 
-          />
-
-          <Route path='/Settings' element={
-              <Settings
-
-              />
-            } 
-          />
-
+          <Route path='/' element={<Home/>}/>
+          <Route path='/Profile' element={<Profile/>}/>
+          <Route path='/Game' element={<Game/>}/>
+          <Route path='/Settings' element={<Settings/>}/>
         </Routes>
-
       </div>
     </div>
     :
     <div className='login-container'>
-      <Login/>
+      <Login setUserData={setUserData}/>
     </div>    
   )
 }

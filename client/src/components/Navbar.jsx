@@ -1,12 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import './style/Navbar.css';
 
-function Navbar() {
+function Navbar({setUserData}) {
     const navigate = useNavigate();
 
     const navigateToPage = (route) => {
         navigate(route);
     };
+
+    const handleExitBtn = () => {
+        setUserData({username: "", password: ""});
+    }
 
     return (    
         <div className='navbar-container'>
@@ -17,7 +21,8 @@ function Navbar() {
                 <div onClick={() => navigateToPage('/')}>Home</div>
                 <div onClick={() => navigateToPage('/Game')}>Game</div>
                 <div onClick={() => navigateToPage('/Profile')}>Profile</div>
-                <div onClick={() => navigateToPage('/Settings')}>Settings</div>                
+                <div onClick={() => navigateToPage('/Settings')}>Settings</div>
+                <button onClick={() => handleExitBtn()}>Exit</button>                
             </div>
         </div>    
     )
